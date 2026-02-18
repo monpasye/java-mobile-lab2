@@ -1,46 +1,27 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-public class MainActivity extends AppCompatActivity implements BlankFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements
+        MainFragment.OnMainFragmentListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            BlankFragment myFragment = new BlankFragment();
 
+        if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, myFragment)
+                    .replace(R.id.fragment_container, new MainFragment())
                     .commit();
         }
     }
 
     @Override
-    public void onButtonOneClicked() {
-        openNewActivity();
-    }
-
-    @Override
-    public void onButtonTwoClicked() {
-        openAnotherActivity();
-    }
-
-    private void openNewActivity() {
-        Intent intent = new Intent(this, NewActivity.class);
-        startActivity(intent);
-    }
-
-    private void openAnotherActivity() {
-        Intent intent = new Intent(this, AnotherActivity.class);
+    public void onLoginClick() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
